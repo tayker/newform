@@ -1,0 +1,33 @@
+*{
+  box-sizing: border-box;
+}
+form{
+  max-width: 300px;
+  width: 100%;
+  margin: 50px auto;
+  padding: 15px;
+  border: 1px solid black;
+}
+form input, form select{
+  width: 100%;
+  font-size: 20px;
+  padding: 5px 10px;
+}
+label{
+  font-size: 20px;
+}
+.input-block{
+  margin-bottom: 20px;
+}
+.input-block.row{
+  display: flex;
+  justify-content: space-between;
+}
+button{
+  width: 100%;
+  font-size: 22px;
+  color: #fff;
+  background-color: #000;
+  border: none;
+  cursor: pointer;
+}
