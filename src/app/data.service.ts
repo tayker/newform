@@ -16,6 +16,12 @@ export class DataService {
       value: 'some lastname',
       label: 'Last Name'
     },
+    phone: {
+      type: 'number',
+      value: '38',
+      label: 'Phone',
+      array: 'phone'
+    },
     email: {
       type: 'email',
       value: 'some email',

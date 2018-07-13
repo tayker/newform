@@ -12,17 +12,13 @@
         <app-radio [key]="prop.key" [myForm]="myForm" [options]="prop.options"></app-radio>
       </ng-container>
       <ng-container *ngSwitchCase="'select'">
-        <!--<select *ngSwitchCase="'select'" [formControlName]="prop.key">-->
-          <!--<option *ngFor="let option of prop.options" [value]="option.value">-->
-            <!--{{option.label}}-->
-          <!--</option>-->
-        <!--</select>-->
         <app-select [key]="prop.key" [myForm]="myForm" [options]="prop.options"></app-select>
       </ng-container>
       <ng-container>
         <input *ngSwitchCase="'number'" type="number" [formControlName]="prop.key">
       </ng-container>
     </ng-container>
+    <button *ngIf="prop.array" (click)="addContact(prop.array)">add new control</button>
   </ng-container>
   <button (click)="submit()">
     Submit

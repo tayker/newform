@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import {FormBuilder, FormGroup, FormControl, FormArray} from '@angular/forms';
 import { DataService } from '../data.service';
 
 @Component({
@@ -31,7 +31,8 @@ export class FormComponent implements OnInit {
         value: this.formData[prop].value,
         type: this.formData[prop].type,
         options: this.formData[prop].options,
-        dependency: this.formData[prop].dependency
+        dependency: this.formData[prop].dependency,
+        array: this.formData[prop].array
       });
       this.myForm = this.fb.group(formData);
     }
@@ -40,10 +41,17 @@ export class FormComponent implements OnInit {
     console.log(this.myForm);
   }
   isDependent(dependent: any): boolean {
-    // console.log(this.myForm.controls.country.value);
     if (dependent) {
       return dependent.value === this.myForm.controls[dependent.field].value;
     }
     else { return true; }
+  }
+  addContact(arrayField){
+    console.log(this.myForm.get[arrayField])
+    // (<FormArray>this.myForm.get[arrayField]).push(
+    //   new FormGroup({
+    //     value: new FormControl('')
+    //   })
+    // );
   }
 }
