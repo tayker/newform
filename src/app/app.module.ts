@@ -5,13 +5,17 @@ import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
 import { TextComponent } from './fields/text/text.component';
 import { EmailComponent } from './fields/email/email.component';
+import { RadioComponent } from './fields/radio/radio.component';
+import { SelectComponent } from './fields/select/select.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormComponent,
     TextComponent,
-    EmailComponent
+    EmailComponent,
+    RadioComponent,
+    SelectComponent
   ],
   imports: [
     BrowserModule,

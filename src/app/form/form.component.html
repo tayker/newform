@@ -1,40 +1,26 @@
 <form [formGroup]="myForm">
   <ng-container *ngFor="let prop of formProps">
-    <ng-container [ngSwitch]="prop.type">
-      <label class="label" *ngIf="isDependent(prop.dependency)">{{prop.label}}:</label>
-      <ng-container *ngIf="isDependent(prop.dependency)">
-        <!--<div *ngSwitchCase="'text'" class="input-block">-->
-          <!--&lt;!&ndash;<input type="text" [formControlName]="prop.key">&ndash;&gt;-->
-        <!--</div>-->
+    <ng-container [ngSwitch]="prop.type" *ngIf="isDependent(prop.dependency)">
+      <label class="label">{{prop.label}}:</label>
+      <ng-container>
         <app-text *ngSwitchCase="'text'" [key]="prop.key" [myForm]="myForm"></app-text>
       </ng-container>
-      <ng-container *ngIf="isDependent(prop.dependency)">
-        <div *ngSwitchCase="'email'" class="input-block">
-          <!--<input type="email" [formControlName]="prop.key">-->
-          <app-email *ngSwitchCase="'email'" [key]="prop.key" [myForm]="myForm"></app-email>
-        </div>
+      <ng-container>
+        <app-email *ngSwitchCase="'email'" [key]="prop.key" [myForm]="myForm"></app-email>
       </ng-container>
-      <ng-container *ngIf="isDependent(prop.dependency)">
-        <div *ngSwitchCase="'radio'" class="input-block row">
-          <ng-container *ngFor="let option of prop.options">
-            <div>{{option.label}}</div>
-            <input type="radio" [formControlName]="prop.key" [name]="prop.key" [value]="option.value">
-          </ng-container>
-        </div>
+      <ng-container *ngSwitchCase="'radio'">
+        <app-radio [key]="prop.key" [myForm]="myForm" [options]="prop.options"></app-radio>
       </ng-container>
-      <ng-container *ngIf="isDependent(prop.dependency)">
-        <div *ngSwitchCase="'select'" class="input-block">
-          <select [formControlName]="prop.key">
-            <option *ngFor="let option of prop.options" [value]="option.value">
-              {{option.label}}
-            </option>
-          </select>
-        </div>
+      <ng-container *ngSwitchCase="'select'">
+        <!--<select *ngSwitchCase="'select'" [formControlName]="prop.key">-->
+          <!--<option *ngFor="let option of prop.options" [value]="option.value">-->
+            <!--{{option.label}}-->
+          <!--</option>-->
+        <!--</select>-->
+        <app-select [key]="prop.key" [myForm]="myForm" [options]="prop.options"></app-select>
       </ng-container>
-      <ng-container *ngIf="isDependent(prop.dependency)">
-        <div *ngSwitchCase="'number'" class="input-block">
-          <input type="number" [formControlName]="prop.key">
-        </div>
+      <ng-container>
+        <input *ngSwitchCase="'number'" type="number" [formControlName]="prop.key">
       </ng-container>
     </ng-container>
   </ng-container>

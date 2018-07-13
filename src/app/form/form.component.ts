@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { DataService } from "../data.service";
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-form',
@@ -39,10 +39,11 @@ export class FormComponent implements OnInit {
   submit() {
     console.log(this.myForm);
   }
-  isDependent(dependent: any) {
+  isDependent(dependent: any): boolean {
+    // console.log(this.myForm.controls.country.value);
     if (dependent) {
-      return dependent.value == this.formData[dependent.field].value;
+      return dependent.value === this.myForm.controls[dependent.field].value;
     }
-    else return true
+    else { return true; }
   }
 }
