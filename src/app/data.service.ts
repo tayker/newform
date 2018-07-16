@@ -9,7 +9,8 @@ export class DataService {
     firstname: {
       type: 'text',
       value: 'some name',
-      label: 'First Name'
+      label: 'First Name',
+      array: 'firstname'
     },
     lastname: {
       type: 'text',
@@ -52,7 +53,8 @@ export class DataService {
       dependency: {
         field: 'country',
         value: 'usa'
-      }
+      },
+      array: 'inn'
     },
     passport: {
       type: 'text',

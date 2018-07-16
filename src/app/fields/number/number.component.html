@@ -1,9 +1,9 @@
 <div *ngIf="case == 'control'" [formGroup]="myForm" class="field">
-  <input type="email" [formControlName]="prop.key">
+  <input type="number" [formControlName]="prop.key">
 </div>
 <div *ngIf="case == 'array'" [formGroup]="myForm" class="array-field field">
   <div *ngFor="let case of myForm.controls[prop.key].controls; let i = index" [formArrayName]="prop.key">
-    <input type="email" formControlName="{{i}}">
+    <input type="number" formControlName="{{i}}">
     <button *ngIf="i > 0" (click)="removeControl(prop.array, i)">Remove Control</button>
   </div>
 </div>

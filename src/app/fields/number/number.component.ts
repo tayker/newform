@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-email',
-  templateUrl: './email.component.html',
-  styleUrls: ['./email.component.css']
+  selector: 'app-number',
+  templateUrl: './number.component.html',
+  styleUrls: ['./number.component.css']
 })
-export class EmailComponent implements OnInit {
+export class NumberComponent implements OnInit {
 
   @Input() myForm;
   @Input() prop;
@@ -17,7 +17,6 @@ export class EmailComponent implements OnInit {
   }
 
   removeControl(arrayField, i) {
-    alert(i);
     this.onRemoveControl.emit({arrayField: arrayField, i: i});
   }
 }

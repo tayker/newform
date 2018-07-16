@@ -31,3 +31,7 @@ button{
   border: none;
   cursor: pointer;
 }
+
+.array-add-btn{
+  margin-bottom: 20px;
+}

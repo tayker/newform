@@ -8,8 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class RadioComponent implements OnInit {
 
   @Input() myForm: any;
-  @Input() key: any;
+  @Input() prop: any;
   @Input() options: any;
+  @Input() case: string;
   constructor() { }
 
   ngOnInit() {

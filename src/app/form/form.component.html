@@ -2,23 +2,33 @@
   <ng-container *ngFor="let prop of formProps">
     <ng-container [ngSwitch]="prop.type" *ngIf="isDependent(prop.dependency)">
       <label class="label">{{prop.label}}:</label>
-      <ng-container>
-        <app-text *ngSwitchCase="'text'" [key]="prop.key" [myForm]="myForm"></app-text>
+      <ng-container *ngIf="!prop.array; else textArrayTemplate">
+        <app-text *ngSwitchCase="'text'" [prop]="prop" [myForm]="myForm" [case]="'control'"></app-text>
       </ng-container>
-      <ng-container>
-        <app-email *ngSwitchCase="'email'" [key]="prop.key" [myForm]="myForm"></app-email>
+      <ng-template #textArrayTemplate>
+        <app-text *ngSwitchCase="'text'" [prop]="prop" [myForm]="myForm" [case]="'array'" (onRemoveControl)="removeControl($event)"></app-text>
+      </ng-template>
+      <ng-container *ngIf="!prop.array; else emailArrayTemplate">
+        <app-email *ngSwitchCase="'email'" [prop]="prop" [myForm]="myForm" [case]="'control'"></app-email>
       </ng-container>
+      <ng-template #emailArrayTemplate>
+        <app-email *ngSwitchCase="'email'" [prop]="prop" [myForm]="myForm" [case]="'array'" (onRemoveControl)="removeControl($event)"></app-email>
+      </ng-template>
       <ng-container *ngSwitchCase="'radio'">
-        <app-radio [key]="prop.key" [myForm]="myForm" [options]="prop.options"></app-radio>
+        <app-radio [prop]="prop" [myForm]="myForm" [options]="prop.options"></app-radio>
       </ng-container>
       <ng-container *ngSwitchCase="'select'">
-        <app-select [key]="prop.key" [myForm]="myForm" [options]="prop.options"></app-select>
+        <app-select [prop]="prop" [myForm]="myForm" [options]="prop.options"></app-select>
       </ng-container>
-      <ng-container>
-        <input *ngSwitchCase="'number'" type="number" [formControlName]="prop.key">
+      <ng-container *ngIf="!prop.array; else numberArrayTemplate">
+        <app-number *ngSwitchCase="'number'" [prop]="prop" [myForm]="myForm" [case]="'control'"></app-number>
       </ng-container>
+      <ng-template #numberArrayTemplate>
+        <app-number *ngSwitchCase="'number'" [prop]="prop" [myForm]="myForm" [case]="'array'" (onRemoveControl)="removeControl($event)"></app-number>
+      </ng-template>
+      <button *ngIf="prop.array" (click)="addContact(prop.array)" class="array-add-btn">add new control {{prop.label}}</button>
     </ng-container>
-    <button *ngIf="prop.array" (click)="addContact(prop.array)">add new control</button>
+
   </ng-container>
   <button (click)="submit()">
     Submit

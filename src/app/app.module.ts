@@ -7,6 +7,7 @@ import { TextComponent } from './fields/text/text.component';
 import { EmailComponent } from './fields/email/email.component';
 import { RadioComponent } from './fields/radio/radio.component';
 import { SelectComponent } from './fields/select/select.component';
+import { NumberComponent } from './fields/number/number.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SelectComponent } from './fields/select/select.component';
     TextComponent,
     EmailComponent,
     RadioComponent,
-    SelectComponent
+    SelectComponent,
+    NumberComponent
   ],
   imports: [
     BrowserModule,

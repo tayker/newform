@@ -23,7 +23,13 @@ export class FormComponent implements OnInit {
     this.formData = this.ds.getFormData();
 
     for (const prop of Object.keys(this.formData)) {
-      formData[prop] = new FormControl(this.formData[prop].value);
+      if (this.formData[prop].array) {
+        formData[prop] = new FormArray([
+          new FormControl(this.formData[prop].value)
+        ]);
+      } else {
+        formData[prop] = new FormControl(this.formData[prop].value);
+      }
 
       this.formProps.push({
         key: prop,
@@ -43,15 +49,14 @@ export class FormComponent implements OnInit {
   isDependent(dependent: any): boolean {
     if (dependent) {
       return dependent.value === this.myForm.controls[dependent.field].value;
-    }
-    else { return true; }
+    } else { return true; }
   }
-  addContact(arrayField){
-    console.log(this.myForm.get[arrayField])
-    // (<FormArray>this.myForm.get[arrayField]).push(
-    //   new FormGroup({
-    //     value: new FormControl('')
-    //   })
-    // );
+  addContact(arrayField) {
+    (<FormArray>this.myForm.get([arrayField])).push(
+      new FormControl(this.formData[arrayField].value)
+    );
+  }
+  removeControl($event) {
+    (<FormArray>this.myForm.get([$event.arrayField])).removeAt($event.i);
   }
 }
